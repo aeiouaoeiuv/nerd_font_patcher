@@ -20,9 +20,14 @@ PatchDir() {
     local output_dir="$2"
 
     # For bash 4.x, must not be in posix mode, may use temporary files
-    mapfile -t files_separated_by_enter < <(find "$target" -type f -name "*.ttf")
+    mapfile -t ttf_files_separated_by_enter < <(find "$target" -type f -name "*.ttf")
+    mapfile -t otf_files_separated_by_enter < <(find "$target" -type f -name "*.otf")
 
-    for each_file in "${files_separated_by_enter[@]}"; do
+    for each_file in "${ttf_files_separated_by_enter[@]}"; do
+        PatchFile "$each_file" "$output_dir"
+    done
+
+    for each_file in "${otf_files_separated_by_enter[@]}"; do
         PatchFile "$each_file" "$output_dir"
     done
 }
@@ -36,7 +41,7 @@ InstallDepends() {
             continue # package already installed
         fi
 
-        echo "Installing $package"
+        echo "Installing $package, please input sudo password"
         sudo apt -y install "$package"
     done
 }
