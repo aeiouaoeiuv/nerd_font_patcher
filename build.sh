@@ -35,7 +35,8 @@ PatchDir() {
 InstallDepends() {
     local depends="fontforge"
 
-    local arr=("$depends")
+    IFS=' ' read -r -a arr <<< "$depends"
+
     for package in "${arr[@]}"; do
         if dpkg -s "$package" >/dev/null 2>&1; then
             continue # package already installed
