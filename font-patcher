@@ -85,6 +85,12 @@ class font_patcher:
                     if symfont:
                         symfont.close()
                         symfont = None
+
+                    # Check font exist, else skip this font
+                    if False == os.path.isfile(self.args.glyphdir + patch['Filename']):
+                        print(self.args.glyphdir + patch["Filename"] + " does not exist, skip this font")
+                        continue
+
                     symfont = fontforge.open(self.args.glyphdir + patch['Filename'])
 
                     # Match the symbol font size to the source font size
@@ -545,6 +551,8 @@ class font_patcher:
             {'Enabled': self.args.fontawesome,      'Name': "Font Awesome",            'Filename': "Font Awesome 5 Brands-Regular-400.otf", 'Exact': True,                                  'SymStart': 0xF000, 'SymEnd': 0xF8E8, 'SrcStart': None,   'SrcEnd': None,   'ScaleGlyph': FONTA_SCALE_LIST, 'Attributes': SYM_ATTR_FONTA},
             {'Enabled': self.args.fontawesome,      'Name': "Font Awesome",            'Filename': "Font Awesome 5 Free-Regular-400.otf",   'Exact': True,                                  'SymStart': 0xF000, 'SymEnd': 0xF5C8, 'SrcStart': None,   'SrcEnd': None,   'ScaleGlyph': False,            'Attributes': SYM_ATTR_FONTA},
             {'Enabled': self.args.fontawesome,      'Name': "Font Awesome",            'Filename': "Font Awesome 5 Free-Solid-900.otf",     'Exact': True,                                  'SymStart': 0xF000, 'SymEnd': 0xF8FF, 'SrcStart': None,   'SrcEnd': None,   'ScaleGlyph': False,            'Attributes': SYM_ATTR_FONTA},
+
+            {'Enabled': self.args.fontawesome,      'Name': "Font Awesome Pro",        'Filename': "Font Awesome 5 Pro-Solid-900.otf",      'Exact': True,                                  'SymStart': 0xF000, 'SymEnd': 0xF8FF, 'SrcStart': None,   'SrcEnd': None,   'ScaleGlyph': False,            'Attributes': SYM_ATTR_FONTA},
 
             # from https://github.com/jloughry/Unicode/raw/master/Unicode_IEC_symbol_font.otf
             {'Enabled': self.args.powersymbols,     'Name': "Power Symbols",           'Filename': "Unicode_IEC_symbol_font.otf",           'Exact': True,                                  'SymStart': 0x23FB, 'SymEnd': 0x23FE, 'SrcStart': None,   'SrcEnd': None,   'ScaleGlyph': None,             'Attributes': SYM_ATTR_DEFAULT},
