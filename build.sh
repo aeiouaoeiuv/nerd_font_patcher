@@ -12,7 +12,7 @@ PatchFile() {
     local target="$1"
     local output_dir="$2"
 
-    fontforge -script font-patcher -out "$output_dir" -s -c -w "$target"
+    fontforge -script font-patcher -out "$output_dir" -s -c -w --reservefontname "$target"
 }
 
 PatchDir() {
@@ -97,4 +97,3 @@ if [ -z "$g_target" ]; then
 fi
 
 Main "$g_target" "$g_output_dir"
-
