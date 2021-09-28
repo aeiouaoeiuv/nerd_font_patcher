@@ -88,7 +88,7 @@ class font_patcher:
 
                     # Check font exist, else skip this font
                     if False == os.path.isfile(self.args.glyphdir + patch['Filename']):
-                        print(self.args.glyphdir + patch["Filename"] + " does not exist, skip this font")
+                        print(self.args.glyphdir + patch["Filename"] + " is missing, skip this font")
                         continue
 
                     symfont = fontforge.open(self.args.glyphdir + patch['Filename'])
@@ -559,11 +559,8 @@ class font_patcher:
             {'Enabled': self.args.powersymbols,     'Name': "Power Symbols",           'Filename': "Unicode_IEC_symbol_font.otf",           'Exact': True,                                  'SymStart': 0x2B58, 'SymEnd': 0x2B58, 'SrcStart': None,   'SrcEnd': None,   'ScaleGlyph': None,             'Attributes': SYM_ATTR_DEFAULT},
 
             # from https://github.com/google/material-design-icons/raw/master/font/MaterialIcons-Regular.ttf
-            {'Enabled': self.args.material,         'Name': "Material",                'Filename': "MaterialIcons-Regular.ttf",             'Exact': False,                                 'SymStart': 0xE000, 'SymEnd': 0xE0DF, 'SrcStart': 0xE010, 'SrcEnd': 0xE0BF, 'ScaleGlyph': None,             'Attributes': SYM_ATTR_DEFAULT},
-            {'Enabled': self.args.material,         'Name': "Material",                'Filename': "MaterialIcons-Regular.ttf",             'Exact': False,                                 'SymStart': 0xE0E0, 'SymEnd': 0xEF5F, 'SrcStart': 0xE0E0, 'SrcEnd': 0xE5F9, 'ScaleGlyph': None,             'Attributes': SYM_ATTR_DEFAULT},
-            {'Enabled': self.args.material,         'Name': "Material",                'Filename': "MaterialIcons-Regular.ttf",             'Exact': False,                                 'SymStart': 0xEF60, 'SymEnd': 0xF06F, 'SrcStart': 0xE640, 'SrcEnd': 0xE6FF, 'ScaleGlyph': None,             'Attributes': SYM_ATTR_DEFAULT},
-            {'Enabled': self.args.material,         'Name': "Material",                'Filename': "MaterialIcons-Regular.ttf",             'Exact': False,                                 'SymStart': 0xF070, 'SymEnd': 0xF23F, 'SrcStart': 0xE7D0, 'SrcEnd': 0xE89F, 'ScaleGlyph': None,             'Attributes': SYM_ATTR_DEFAULT},
-            {'Enabled': self.args.material,         'Name': "Material",                'Filename': "MaterialIcons-Regular.ttf",             'Exact': False,                                 'SymStart': 0x10FFFD, 'SymEnd': 0x10FFFD, 'SrcStart': 0xE894, 'SrcEnd': 0xE894, 'ScaleGlyph': None,         'Attributes': SYM_ATTR_DEFAULT},
+            {'Enabled': self.args.material,         'Name': "Material",                'Filename': "MaterialIcons-Regular.ttf",             'Exact': False,                                 'SymStart': 0xE000, 'SymEnd': 0xF23F, 'SrcStart': 0x1E000, 'SrcEnd': 0x1E71F, 'ScaleGlyph': None,           'Attributes': SYM_ATTR_DEFAULT},
+            {'Enabled': self.args.material,         'Name': "Material",                'Filename': "MaterialIcons-Regular.ttf",             'Exact': False,                                 'SymStart': 0x10FFFD, 'SymEnd': 0x10FFFD, 'SrcStart': 0x1E71F, 'SrcEnd': 0x1E71F, 'ScaleGlyph': None,       'Attributes': SYM_ATTR_DEFAULT},
 
             # from https://github.com/erikflowers/weather-icons/raw/master/font/weathericons-regular-webfont.ttf
             {'Enabled': self.args.weather,          'Name': "Weather Icons",           'Filename': "weathericons-regular-webfont.ttf",      'Exact': False,                                 'SymStart': 0xF000, 'SymEnd': 0xF0EB, 'SrcStart': 0xE8A0, 'SrcEnd': 0xE98F, 'ScaleGlyph': None,             'Attributes': SYM_ATTR_DEFAULT},
