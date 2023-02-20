@@ -1,4 +1,4 @@
-name: fetch fira code and patch
+name: fetch and patch
 
 on:
   push:
@@ -27,9 +27,23 @@ jobs:
           unzip ${{ vars.FIRACODE_DOWNLOADED_FILENAME }} -d firacode
           ./build.sh -t firacode/ttf -o firacode_patched
       -
-        name: Upload Artifact
+        name: Upload FiraCode Artifact
         uses: actions/upload-artifact@v3
         with:
           name: firacode_patched
           path: firacode_patched
+      -
+        name: Build CascadiaCode
+        run: |
+          export LC_ALL="en_US.UTF-8"
+          mkdir -p cascadiacode
+          wget -c ${{ vars.CASCADIACODE_DOWNLOAD_URL }}
+          unzip ${{ vars.CASCADIACODE_DOWNLOADED_FILENAME }} -d cascadiacode
+          ./build.sh -t cascadiacode/otf/static -o cascadiacode_patched
+      -
+        name: Upload CascadiaCode Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: cascadiacode_patched
+          path: cascadiacode_patched
 
