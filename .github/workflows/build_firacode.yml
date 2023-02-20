@@ -1,0 +1,35 @@
+name: fetch fira code and patch
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    container:
+      image: aeiouaoeiuv/ubuntu:nerd_font_patcher
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v3
+      -
+        name: Decrypt
+        run: |
+          gpg --quiet --batch --yes --decrypt --passphrase='${{ secrets.PASSWORD }}' --output src/glyphs/Font\ Awesome\ 5\ Pro-Solid-900.otf src/glyphs/Font\ Awesome\ 5\ Pro-Solid-900.otf.gpg
+      -
+        name: Build FiraCode
+        run: |
+          export LC_ALL="en_US.UTF-8"
+          mkdir -p firacode
+          wget -c ${{ vars.FIRACODE_DOWNLOAD_URL }}
+          unzip ${{ vars.FIRACODE_DOWNLOADED_FILENAME }} -d firacode
+          ./build.sh -t firacode/ttf -o firacode_patched
+      -
+        name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: firacode_patched
+          path: firacode_patched
+
