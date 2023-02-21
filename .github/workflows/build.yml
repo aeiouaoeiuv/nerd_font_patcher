@@ -39,7 +39,18 @@ jobs:
           mkdir -p cascadiacode
           wget -c ${{ vars.CASCADIACODE_DOWNLOAD_URL }}
           unzip ${{ vars.CASCADIACODE_DOWNLOADED_FILENAME }} -d cascadiacode
-          ./build.sh -t cascadiacode/otf/static -o cascadiacode_patched
+          ./build.sh -t cascadiacode/otf/static/CascadiaMono-BoldItalic.otf -o cascadiacode_patched
+          ./build.sh -t cascadiacode/otf/static/CascadiaMono-Bold.otf -o cascadiacode_patched
+          ./build.sh -t cascadiacode/otf/static/CascadiaMono-ExtraLightItalic.otf -o cascadiacode_patched
+          ./build.sh -t cascadiacode/otf/static/CascadiaMono-ExtraLight.otf -o cascadiacode_patched
+          ./build.sh -t cascadiacode/otf/static/CascadiaMono-Italic.otf -o cascadiacode_patched
+          ./build.sh -t cascadiacode/otf/static/CascadiaMono-LightItalic.otf -o cascadiacode_patched
+          ./build.sh -t cascadiacode/otf/static/CascadiaMono-Light.otf -o cascadiacode_patched
+          ./build.sh -t cascadiacode/otf/static/CascadiaMono-Regular.otf -o cascadiacode_patched
+          ./build.sh -t cascadiacode/otf/static/CascadiaMono-SemiBoldItalic.otf -o cascadiacode_patched
+          ./build.sh -t cascadiacode/otf/static/CascadiaMono-SemiBold.otf -o cascadiacode_patched
+          ./build.sh -t cascadiacode/otf/static/CascadiaMono-SemiLightItalic.otf -o cascadiacode_patched
+          ./build.sh -t cascadiacode/otf/static/CascadiaMono-SemiLight.otf -o cascadiacode_patched
       -
         name: Upload CascadiaCode Artifact
         uses: actions/upload-artifact@v3
